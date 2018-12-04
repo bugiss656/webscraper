@@ -25,22 +25,32 @@ a:link {
 
 .navbar {
     background: #2B2D3E;
-    font-size: 30px;
+    font-size: 55px;
+    border-bottom: 2px solid #fff;
 }
 
-.display-content {
-    margin: 50px 0 50px 0;
-}
-
-.custom-btn {
-    border: none;
-    text-align: center;
-    background: #2B2D3E;
-    font-size: 18px;
+.navbar-title {
     padding: 10px;
-    color: rgb(204, 204, 204);
 }
 
-.custom-btn:hover {
+.description {
+    text-align: center;
+}
+
+.menu {
+    background: #2B2D3E;
+}
+
+.option {
+    font-size: 24px;
+    padding: 10px 25px 10px 25px;
+}
+
+.option a {
+    color: #fff;
+}
+
+.option:hover {
     cursor: pointer;
+    background: #34374b;
 }
