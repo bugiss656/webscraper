@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #343E59;
+    color: rgb(204, 204, 204);
+    font-family: Montserrat, Arial, sans-serif;
+}
+
+hr {
+    background: rgb(204, 204, 204);
+}
+
+.logo {
+    color: #fff;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.logo:hover {
+    cursor: pointer;
+    color: #fff;
+}
+
+.navbar {
+    background: #2B2D3E;
+    font-size: 30px;
+}
+
+.display-content {
+    margin: 50px 0 50px 0;
+}
+
+.custom-btn {
+    border: none;
+    text-align: center;
+    background: #2B2D3E;
+    font-size: 18px;
+    padding: 10px;
+    color: rgb(204, 204, 204);
+}
+
+.custom-btn:hover {
+    cursor: pointer;
+}
