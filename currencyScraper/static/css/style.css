@@ -54,3 +54,37 @@ a:link {
     cursor: pointer;
     background: #34374b;
 }
+
+.display-table {
+    border-collapse: collapse;
+    background: #2B2D3E;
+    width: 100%;
+    font-size: 18px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+tr:hover {background: #34374b;}
+
+.btn-container {
+    margin-top: 100px;
+}
+
+.save-btn {
+    background: #2B2D3E;
+    padding: 5px 10px;
+    font-size: 18px;
+}
+
+.save-btn:hover {
+    background: #34374b;
+    cursor: pointer;
+}
+
+.footer {
+    background: #2B2D3E;
+    padding: 20px 0;
+}
