@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'homepage/homepage.html')
 
 def popularCurrency(request):
     return render(request, 'popularCurrency/popular-currency.html')
