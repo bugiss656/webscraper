@@ -1,14 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from scraper.classModule import *
 
-def index(request):
+def indexView(request):
     return render(request, 'homepage/homepage.html')
 
-def popularCurrency(request):
-    return render(request, 'popularCurrency/popular-currency.html')
+def popularCurrencyView(request):
 
-def allCurrency(request):
+    popularCurrencyObject = popularCurrency()
+    popularCurrencyObject.clearData()
+    popularCurrencyObject.scrapPopularCurrency()
+
+    context = {
+        'currencyNames': popularCurrencyObject.popularCurrencyNames,
+        'currencyRates': popularCurrencyObject.popularCurrencyRates,
+        'currencyChanges': popularCurrencyObject.popularCurrencyChanges,
+        'dataObject': popularCurrencyObject.popularCurrencyData
+    }
+
+    return render(request, 'popularCurrency/popular-currency.html', context)
+
+def allCurrencyView(request):
     return render(request, 'allCurrency/all-currency.html') 
 
-def about(request):
+def aboutView(request):
     return render(request, 'about/about.html')

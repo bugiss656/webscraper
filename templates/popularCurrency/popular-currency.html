@@ -16,30 +16,18 @@
         <thead>
             <tr>
                 <th>Nazwa waluty</th>
-                <th>Symbol</th>
                 <th>Kurs</th>
                 <th>Zmiana</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>adas</td>
-                <td>asdq</td>
-                <td>qweqw</td>
-                <td>fgdfg</td>
-            </tr>
-            <tr>
-                <td>qwq</td>
-                <td>yukghj</td>
-                <td>fgh</td>
-                <td>erte</td>
-            </tr>
-            <tr>
-                <td>dSDA</td>
-                <td>hfgh</td>
-                <td>rty</td>
-                <td>rtyr</td>
-            </tr>
+            {% for row in dataObject %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.rate }}</td>
+                    <td>{{ row.change }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

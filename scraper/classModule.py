@@ -1,14 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
 
-class ScrapingOptions:
+class ScrapingOptions(object):
+    
     url = 'https://kursy-walut.mybank.pl/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
 
 
 class popularCurrency(ScrapingOptions):
-    
+
+    popularCurrencyNames = []
+    popularCurrencyRates = []
+    popularCurrencyChanges = []
+    popularCurrencyData = []
+
     def scrapPopularCurrency(self):
         content = self.soup.find('div', class_= 'cen')
         box = content.find_all('b')
@@ -17,20 +23,33 @@ class popularCurrency(ScrapingOptions):
         ratePattern = box[1::3]
         changePattern = box[2::3]
 
-        popularCurrencyNames = [i.text for i in namePattern]
-        popularCurrencyRates = [i.text for i in ratePattern]
-        popularCurrencyChanges = [i.text for i in changePattern]
+        self.popularCurrencyNames = [i.text for i in namePattern]
+        self.popularCurrencyRates = [i.text for i in ratePattern]
+        self.popularCurrencyChanges = [i.text for i in changePattern]
 
-        popularCurrencyData = [{
-            'name': popularCurrencyNames[i],
-            'rate': popularCurrencyRates[i],
-            'change': popularCurrencyChanges[i]
+        self.popularCurrencyData = [{
+            'name': self.popularCurrencyNames[i],
+            'rate': self.popularCurrencyRates[i],
+            'change': self.popularCurrencyChanges[i]
         } for i in range(len(namePattern))]
 
-        return popularCurrencyData
+        return self.popularCurrencyData
+
+    def clearData(self):
+        self.popularCurrencyNames.clear()
+        self.popularCurrencyRates.clear()
+        self.popularCurrencyChanges.clear()
+        self.popularCurrencyData.clear()
+
+        return self.popularCurrencyData
 
 
 class allCurrency(ScrapingOptions):
+
+    allCurrencyNames = []
+    allCurrencyRates = []
+    allCurrencyChanges = []
+    allCurrencyData = []
 
     def scrapAllCurrency(self):
         table = self.soup.find('table', class_='tab_kursy')
@@ -40,17 +59,22 @@ class allCurrency(ScrapingOptions):
         ratePattern = row[2::5]
         changePattern = row[3::5]
 
-        allCurrencyNames = [i.text for i in namePattern]
-        allCurrencyRates = [i.text for i in ratePattern]
-        allCurrencyChanges = [i.text for i in changePattern]
+        self.allCurrencyNames = [i.text for i in namePattern]
+        self.allCurrencyRates = [i.text for i in ratePattern]
+        self.allCurrencyChanges = [i.text for i in changePattern]
 
-        allCurrencyData = [{
-            'name': allCurrencyNames[i],
-            'rate': allCurrencyRates[i],
-            'change': allCurrencyChanges[i]
+        self.allCurrencyData = [{
+            'name': self.allCurrencyNames[i],
+            'rate': self.allCurrencyRates[i],
+            'change': self.allCurrencyChanges[i]
         } for i in range(len(namePattern))]
 
-        return allCurrencyData
+        return self.allCurrencyData
 
+    def clearData(self):
+        self.allCurrencyNames.clear()
+        self.allCurrencyRates.clear()
+        self.allCurrencyChanges.clear()
+        self.allCurrencyData.clear()
 
-
+        return self.allCurrencyData
