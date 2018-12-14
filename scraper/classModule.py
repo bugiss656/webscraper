@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-class ScrapingOptions(object):
+class ScrapingOptions():
     
     url = 'https://kursy-walut.mybank.pl/'
     response = requests.get(url)
@@ -47,6 +47,7 @@ class popularCurrency(ScrapingOptions):
 class allCurrency(ScrapingOptions):
 
     allCurrencyNames = []
+    allCurrencySymbols = []
     allCurrencyRates = []
     allCurrencyChanges = []
     allCurrencyData = []
@@ -56,15 +57,18 @@ class allCurrency(ScrapingOptions):
         row = table.find_all('td')
 
         namePattern = row[0::5]
+        symbolPattern = row[1::5]
         ratePattern = row[2::5]
         changePattern = row[3::5]
 
         self.allCurrencyNames = [i.text for i in namePattern]
+        self.allCurrencySymbols = [i.text for i in symbolPattern]
         self.allCurrencyRates = [i.text for i in ratePattern]
         self.allCurrencyChanges = [i.text for i in changePattern]
 
         self.allCurrencyData = [{
             'name': self.allCurrencyNames[i],
+            'symbol': self.allCurrencySymbols[i],
             'rate': self.allCurrencyRates[i],
             'change': self.allCurrencyChanges[i]
         } for i in range(len(namePattern))]
@@ -73,6 +77,7 @@ class allCurrency(ScrapingOptions):
 
     def clearData(self):
         self.allCurrencyNames.clear()
+        self.allCurrencySymbols.clear()
         self.allCurrencyRates.clear()
         self.allCurrencyChanges.clear()
         self.allCurrencyData.clear()

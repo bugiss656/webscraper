@@ -21,7 +21,19 @@ def popularCurrencyView(request):
     return render(request, 'popularCurrency/popular-currency.html', context)
 
 def allCurrencyView(request):
-    return render(request, 'allCurrency/all-currency.html') 
+
+    allCurrencyObject = allCurrency()
+    allCurrencyObject.clearData()
+    allCurrencyObject.scrapAllCurrency()
+
+    context = {
+        'currencyNames': allCurrencyObject.allCurrencyNames,
+        'currencySymbols': allCurrencyObject.allCurrencySymbols,
+        'currencyRates': allCurrencyObject.allCurrencyRates,
+        'currencyChanges': allCurrencyObject.allCurrencyChanges,
+        'dataObject': allCurrencyObject.allCurrencyData
+    }
+    return render(request, 'allCurrency/all-currency.html', context) 
 
 def aboutView(request):
     return render(request, 'about/about.html')

@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<div class="container btn-container d-flex justify-content-end">
+    <div class="save-btn">
+        Save to csv
+        <i class="fas fa-file-csv fa-md"></i>
+    </div>
+    <div class="save-btn">
+        Save to excel
+        <i class="fas fa-file-excel fa-md"></i>
+    </div>
+</div>
+<div class="container d-flex justify-content-center">
+    <table class='display-table'>
+        <thead>
+            <tr>
+                <th>Nazwa waluty</th>
+                <th>Symbol</th>
+                <th>Kurs</th>
+                <th>Zmiana</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in dataObject %}
+                <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.symbol }}</td>
+                    <td>{{ row.rate }}</td>
+                    <td>{{ row.change }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
